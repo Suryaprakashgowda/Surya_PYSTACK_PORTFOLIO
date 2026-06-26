@@ -1,4 +1,4 @@
-# 🚀 Kushikumar B | Portfolio
+# 🚀 SURYAPRAKASHGOWDA H S | Portfolio
 
 Welcome to the repository of my personal engineering portfolio! This is a modern, single-page web application designed with a focus on seamless user experiences, interactive filtering layouts, clean centralized structures, and smooth micro-interactions.
 

@@ -62,7 +62,7 @@ const Footer = () => {
 
         {/* Row 3: Copyright Info */}
         <div className="footer-copyright">
-          <p>© {new Date().getFullYear()} Kushikumar B. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Suryaprakashgowda H S. All rights reserved.</p>
         </div>
 
       </div>
