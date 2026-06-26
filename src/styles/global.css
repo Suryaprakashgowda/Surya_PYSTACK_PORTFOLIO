@@ -1,0 +1,822 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & VARIABLES
+   ========================================================================== */
+:root {
+  --primary-color: #8b5cf6;       /* Vibrantly modern violet/purple */
+  --primary-hover: #7c3aed;       /* Deeper violet for active/hover states */
+  --primary-light: #f5f3ff;      /* Very soft purple for tags and blocks tint */
+  --text-dark: #1e1b4b;          /* Dark navy/slate for crisp readability */
+  --text-muted: #64748b;         /* Muted slate gray for secondary details */
+  --bg-light: #fafafa;           /* Minimal clean body background texture */
+  --bg-card: #F3F4F6;            /* Crisp pure white for cards and layout boxes */
+  --border-color: #e2e8f0;       /* Light border separation divider tint */
+  --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth; /* Enables native seamless anchor link jumping */
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-smooth);
+}
+
+button {
+  font-family: var(--font-main);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+/* Page Section Wrapper to create clear breathing spacing */
+section { 
+  padding: 70px 5%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+/* ==========================================================================
+   2. NAVBAR COMPONENT
+   ========================================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px); 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+.nav-logo h1 {
+  font-size: 1.3rem;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links li a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.nav-links li a:hover,
+.nav-links li.active a {
+  color: var(--primary-color);
+}
+
+/* Rounded Purple Button from the design draft image */
+.btn-login {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.btn-login:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+}
+
+/* ==========================================================================
+   3. HOME PAGE (.parent split layout)
+   ========================================================================== */
+#home {
+  padding-top: 120px; /* Offset spacing for the fixed top floating navbar */
+  background: radial-gradient(circle at 90% 10%, #f5f3ff 0%, transparent 40%);
+}
+
+.parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  width: 100%;
+}
+
+.parent .left {
+  flex: 1;
+}
+
+.parent .left h1:nth-child(1) {
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.parent .left h1:nth-child(2) {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, var(--text-dark), var(--primary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.parent .left p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  max-width: 550px;
+}
+
+.parent .left button {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 14px 32px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
+}
+
+.parent .left button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.parent .right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.parent .right img {
+  width: 85%;
+  height: 500px;
+  max-width: 450px;
+  border-radius: 50%; /* Matches the rounded square look from the sample mockup */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+  transition: var(--transition-smooth);
+}
+
+.parent .right img:hover {
+  transform: scale(1.02) translateY(-5px);
+}
+
+/* ==========================================================================
+   4. ABOUT PAGE
+   ========================================================================== */
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Image rendered explicitly in a clean, professional circle */
+.about .top img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  border: 4px solid #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: var(--transition-smooth);
+}
+
+.about .top img:hover {
+  transform: rotate(3deg) scale(1.05);
+}
+
+.about .bottom {
+  max-width: 750px;
+}
+
+.about .bottom h1 {
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+
+.about .bottom h5 {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 20px;
+}
+
+.about .bottom p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 15px;
+  text-align: justify; /* Cleans up alignment for large reading blocks */
+}
+
+/* ==========================================================================
+   5. PROJECTS SECTION (.card design)
+   ========================================================================== */
+.projects-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0px 0 40px 0 !important; /* Spans full horizontal container dimensions */
+  scroll-margin-top: 85px;
+}
+
+.marquee-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 10px;
+  scrollbar-width: none;
+}
+.marquee-wrapper::-webkit-scrollbar{
+  display: none;
+}
+
+
+.marquee-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+}
+
+/* Pause the continuous slide on mouse hover so recruiters can click links easily */
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Vertical Card Elements Setup matching the layout */
+.v-card {
+  position: relative;
+  background-color: var(--bg-card);
+  width: 320px;
+  height: 480px;
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.v-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 16px 35px rgba(139, 92, 246, 0.1);
+}
+
+/* Top Circular Badge Number Layout */
+.card-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #ffffff;
+  color: var(--text-dark);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  z-index: 5;
+}
+
+/* Picture Area constraints */
+.card-image-box {
+  width: 100%;
+  height: 52%;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.card-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps hardware frames centered and pristine */
+  transition: var(--transition-smooth);
+}
+
+/* Details Section positioning */
+.card-details {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card-tech-text {
+  font-size: 1rem;       
+  color: var(--primary-color); 
+  font-weight: 500;
+  margin: 4px 0 10px 0 !important;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.card-details h3 {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+}
+
+.card-details p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Action alignment bar at base footer */
+.card-action-bar {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Bottom pill label tag styling */
+.status-pill {
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.card-nav-links {
+  display: flex;
+  gap: 14px;
+}
+
+.card-nav-links a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  border-bottom: 2px solid transparent;
+}
+
+.card-nav-links a:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* ==========================================================================
+   6. EDUCATION SECTION
+   ========================================================================== */
+.education-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.education {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-card);
+  padding: 25px 40px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border-left: 5px solid var(--primary-color); /* Elegant colored highlight tab accent */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: var(--transition-smooth);
+}
+
+.education:hover {
+  transform: translateX(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.education .left h1 {
+  font-size: 1.35rem;
+  margin-bottom: 5px;
+}
+
+.education .left h3:nth-of-type(1) {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.education .left h3:nth-of-type(2) {
+  font-size: 0.95rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.education .right h2 {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  background-color: var(--bg-light);
+  padding: 6px 16px;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   7. SKILLS SECTION WITH FILTERS
+   ========================================================================== */
+.skills-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.filter-buttons button {
+  background-color: var(--bg-card);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.btn-active {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 150px)); /* Grid maps flawlessly */
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+}
+
+.skills-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  transition: var(--transition-smooth);
+}
+
+.skills-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.08);
+}
+
+.skills-card img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* ==========================================================================
+   8. CONTACT FORM (.contact wrapper splits)
+   ========================================================================== */
+.contact {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-card);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  width: 100%;
+}
+
+.contact .left {
+  flex: 1;
+  background-color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  height: 100%;
+  align-self: stretch; /* Forces layout boxes to align in equal row heights */
+}
+
+.contact .left img {
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  animation: float 4s ease-in-out infinite; 
+  object-fit: contain;
+}
+
+.contact .right {
+  flex: 1.2;
+  padding: 50px;
+}
+
+.contact .right h3 {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.contact .right h1 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+.contact .right p {
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-dark);
+}
+
+.contact-form input,
+.contact-form textarea {
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  transition: var(--transition-smooth);
+  color: var(--text-dark);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--primary-color);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+  outline: none;
+}
+
+.contact-form button {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+}
+
+.contact-form button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
+}
+
+.form-status-msg.success {
+  color: #10b981; /* Premium emerald green for success validation */
+}
+.form-status-msg.error {
+  color: #ef4444; /* Vivid red alert warning for errors */
+}
+
+/* ==========================================================================
+   9. GLOBAL FOOTER (Centred Template Design)
+   ========================================================================== */
+.global-footer {
+  background-color: #0b0f19; /* Rich dark midnight background color to anchor the site */
+  border-top: 1px solid #1e293b; /* Subtle dark border line */
+  padding: 60px 10% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px; /* Precise vertical breathing space between template segments */
+  width: 100%;
+  text-align: center;
+}
+
+/* Row 1: Circular Social Icons */
+.footer-socials {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.social-circle {
+  background-color: #ffffff; /* Crisp white circles from the image template */
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.social-circle img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: var(--transition-smooth);
+}
+
+/* Hover effect: circle pops up and gets a soft purple tint shadow glow */
+.social-circle:hover {
+  transform: translateY(-4px);
+  background-color: var(--primary-light); /* Mixes in the accent theme color subtly */
+  box-shadow: 0 6px 15px rgba(139, 92, 246, 0.4);
+}
+
+/* Row 2: Secondary Navigation links grid */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.footer-links li a {
+  color: #94a3b8; /* Soft muted gray contrast for reading readability against black backgrounds */
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase; /* Clean uniform capitalized style */
+}
+
+.footer-links li a:hover {
+  color: var(--primary-color); /* Underlines your selected page in purple hover states */
+}
+
+/* Row 3: Copyright info signature block */
+.footer-copyright p {
+  color: #475569; /* Deeply muted contrast text */
+  font-size: 0.85rem;
+  letter-spacing: 0.3px;
+  margin: 0 !important;
+}
+
+/* ==========================================================================
+   10. KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ==========================================================================
+   11. RESPONSIVE DESIGN (MOBILE ADAPTABILITY)
+   ========================================================================== */
+@media (max-width: 968px) {
+  section { padding: 60px 5%; }
+  .parent { flex-direction: column-reverse; text-align: center; }
+  .parent .left h1:nth-child(2) { font-size: 2.8rem; }
+  .parent .left p { max-width: 100%; }
+  .card { flex-direction: column; }
+  .card .left { max-width: 100%; height: 200px; }
+  .education { flex-direction: column; align-items: flex-start; gap: 15px; }
+  .contact { flex-direction: column; }
+  .contact .left { display: none; } /* Dynamic optimization for clean phone layout form spaces */
+  .navbar { padding: 0 5%; }
+  .nav-links { display: none; } /* In production, you could toggle a clean responsive dropdown burger */
+}
+
+/* ==========================================================================
+   12. ADVANCED SCROLL & INTERACTIVE ANIMATIONS
+   ========================================================================== */
+
+/* Fade-In and Slide-Up effect for sections as they enter the screen */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply scroll fade-in to main structural pages */
+.parent, .about, .projects-container, .education, .skills-container, .contact {
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
+  /* Optional: If you want elements to animate *only* as you scroll down to them natively: */
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
+
+/* Micro-interaction for Text Highlight Glimmer on Headers */
+@keyframes gradientGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.parent .left h1:nth-child(2) {
+  background-size: 200% auto !important;
+  animation: gradientGlow 4s ease infinite;
+}
+
+/* Bouncy hover scale for skills cards and project cards */
+.skills-card, .card {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.4s ease, 
+              border-color 0.4s ease !important;
+}
+
+/* Active Filtering Quick-Switch Fade for the Skills tab */
+@keyframes pulseFade {
+  from { opacity: 0.4; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.skills-card {
+  animation: pulseFade 0.3s ease-out;
+}
